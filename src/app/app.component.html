@@ -1,1 +1,12 @@
-<h1>{{balance}}</h1>
+<md-sidenav-container fxFlex fxFill fxLayout="row" class="content-wrapper">
+  <div fxFlex fxLayout="column">
+    <app-toolbar></app-toolbar>
+    <div fxFlex fxFill fxLayout="row" class="content-wrapper">
+      <app-sidebar class="bcxAppSidebar"></app-sidebar>
+      <div fxFlex fxFill fxLayout="column" class="bcx__content"
+           [ngClass]="{ 'withMenu' : authService.isAuthenticated }">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</md-sidenav-container>
