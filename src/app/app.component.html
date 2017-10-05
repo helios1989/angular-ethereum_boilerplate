@@ -2,9 +2,9 @@
   <div fxFlex fxLayout="column">
     <app-toolbar></app-toolbar>
     <div fxFlex fxFill fxLayout="row" class="content-wrapper">
-      <app-sidebar class="bcxAppSidebar"></app-sidebar>
-      <div fxFlex fxFill fxLayout="column" class="bcx__content"
-           [ngClass]="{ 'withMenu' : authService.isAuthenticated }">
+      <app-sidebar class="AppSidebar"></app-sidebar>
+      <div fxFlex fxFill fxLayout="column" class="content"
+           [ngClass]="{ 'withMenu' : true }">
         <router-outlet></router-outlet>
       </div>
     </div>

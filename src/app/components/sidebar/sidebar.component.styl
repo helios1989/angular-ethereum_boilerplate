@@ -1,0 +1,31 @@
+@import '../../../global.styl'
+
+.bcxMdSidenav
+  margin-top 2px
+
+.bcxBurgerMenu
+  position fixed
+  top 10px
+  left 10px
+  cursor pointer
+  @media screen and (min-width: 600px)
+    display none
+
+.bcxBurgerMenu__icon
+  margin-left -6px
+  margin-top -4px
+  zoom 90%
+  color $primaryColor
+
+.bcxSidebar
+  padding 0 !important
+  min-width $sidenavWidth
+  width $sidenavWidth
+
+.bcxSidebar-item
+  color $secondaryColor
+  border-bottom 1px solid $text1Color
+
+.bcxSidebar-item.selected
+  color $primaryColor
+  background $lightTextColor

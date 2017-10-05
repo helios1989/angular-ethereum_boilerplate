@@ -1,0 +1,60 @@
+@import "global";
+
+.mat-button,
+.mat-raised-button,
+.mat-fab,
+.mat-icon-button,
+.mat-mini-fab,
+.mat-card,
+.mat-checkbox,
+.mat-input-container,
+.mat-list,
+.mat-menu-item,
+.mat-radio-button,
+.mat-select,
+.mat-list .mat-list-item .mat-list-item-content,
+.mat-nav-list .mat-list-item .mat-list-item-content,
+.mat-simple-snackbar,
+.mat-tab-label,
+.mat-slide-toggle-content,
+.mat-toolbar,
+.mat-tooltip
+  font-family $fontFamily
+
+.mat-progress-bar
+  height 12px!important
+  border-radius 20px
+
+md-dialog
+  @media screen and (min-width:600px)
+    min-width $minDialogWidth
+
+.mat-drawer
+  background-color $lightBgColor
+
+.mat-drawer-content
+  width 100%
+
+.mat-drawer-container
+  background-color $lightBgColor
+
+.mat-progress-bar-buffer
+  background-color $tertiaryColor
+
+.mat-progress-bar-fill::after
+  background-color $primaryColor
+
+.mat-tab-labels
+  text-align center
+  display block!important
+
+.mat-tab-label
+  color $secondaryColor
+  font-size $fontSizeMD
+  opacity 1!important
+
+.mat-tab-label-active
+  color $primaryColor
+
+.mat-ink-bar
+  background-color $primaryColor!important

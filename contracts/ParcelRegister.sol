@@ -9,47 +9,44 @@ contract ParcelRegister {
   string note;
   }
 
-  mapping(bytes32 => bytes32[]) public recordHashByParcelHash;
-  mapping(bytes32 => Record) public recordsByRecordHash;
+  event ParcelMade(bytes32 parcelHash, address parcelSender);
+
+  mapping(bytes32 => bytes32[]) public __recordHashByParcelHash;
+  mapping(bytes32 => Record) public __recordByRecordHash;
 
   function addRecord(uint40 _timestamp, int _lat, int _long, string _note, bytes32 _parcelHash) public {
     bytes32 recordHash = getRecordHash(_timestamp, _lat, _long, _note);
 
-    recordsByRecordHash[recordHash].timestamp = _timestamp;
-    recordsByRecordHash[recordHash].lat = _lat;
-    recordsByRecordHash[recordHash].long = _long;
-    recordsByRecordHash[recordHash].note = _note;
-    recordHashByParcelHash[_parcelHash].push(recordHash);
+    __recordByRecordHash[recordHash].timestamp = _timestamp;
+    __recordByRecordHash[recordHash].lat = _lat;
+    __recordByRecordHash[recordHash].long = _long;
+    __recordByRecordHash[recordHash].note = _note;
+    __recordHashByParcelHash[_parcelHash].push(recordHash);
   }
 
-  function startParcel(uint40 _timestamp, int _lat, int _long, string _note, string _parcelName) public returns (bytes32) {
-    bytes32 parcelHash = getStringHash(_parcelName);
-    bytes32 recordHash = getRecordHash(_timestamp, _lat, _long, _note);
+  function startParcel(uint40 _timestamp, int _lat, int _long, string _note, string _parcelName) public {
+    bytes32 parcelHash = getParcelHash(_parcelName, _timestamp);
 
-    recordsByRecordHash[recordHash].timestamp = _timestamp;
-    recordsByRecordHash[recordHash].lat = _lat;
-    recordsByRecordHash[recordHash].long = _long;
-    recordsByRecordHash[recordHash].note = _note;
-    recordHashByParcelHash[parcelHash].push(recordHash);
+    addRecord(_timestamp, _lat, _long, _note, parcelHash);
 
-    return parcelHash;
+    ParcelMade(parcelHash, msg.sender);
   }
 
-  function getParcelRecords(bytes32 parcelHash) public constant returns (bytes32[]) {
-    return recordHashByParcelHash[parcelHash];
+  function recordHashByParcelHash(bytes32 _parcelHash) public constant returns (bytes32[]) {
+    return __recordHashByParcelHash[_parcelHash];
   }
 
-  function getRecord(bytes32 recordHash) public constant returns (uint40, int, int, string) {
+  function recordByRecordHash(bytes32 recordHash) public constant returns (uint40, int, int, string) {
     return (
-    recordsByRecordHash[recordHash].timestamp,
-    recordsByRecordHash[recordHash].lat,
-    recordsByRecordHash[recordHash].long,
-    recordsByRecordHash[recordHash].note
+    __recordByRecordHash[recordHash].timestamp,
+    __recordByRecordHash[recordHash].lat,
+    __recordByRecordHash[recordHash].long,
+    __recordByRecordHash[recordHash].note
     );
   }
 
-  function getStringHash(string stringIn)  public constant returns (bytes32) {
-    return keccak256(stringIn);
+  function getParcelHash(string name, uint40 timestamp)  public constant returns (bytes32) {
+    return keccak256(name, timestamp);
   }
   function getRecordHash(uint40 timestamp, int lat, int long, string note) public constant returns (bytes32) {
     return keccak256(timestamp, lat, long, note);

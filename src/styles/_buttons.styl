@@ -1,0 +1,73 @@
+@import '../global';
+
+$btnBorderRadius = 30px;
+
+.mat-button.mat-default-theme.mat-primary.mat-fab, .mat-button.mat-primary.mat-fab, .mat-button.mat-default-theme.mat-primary.mat-raised, .mat-button.mat-primary.mat-raised
+  color $neutralColor
+
+button:enabled.mat-raised-button .mat-button-wrapper, label.mat-raised-button
+  color $lightTextColor
+
+label.mat-raised-button:hover
+  opcaity 0.8
+
+button:enabled.mat-button
+  color $primaryColor
+  border 1px solid $primaryColor
+  border-radius $btnBorderRadius
+
+.mat-button-wrapper
+  padding-left 16px
+  padding-right 16px
+
+.mat-fab, .mat-mini-fab, .mat-raised-button
+  color $lightTextColor
+  background-color $primaryColor
+
+.mat-button.mat-default-theme.mat-primary.mat-fab, .mat-button.mat-primary.mat-fab, .mat-button.mat-default-theme.mat-primary.mat-raised, .mat-button.mat-primary.mat-raised
+  color $lightTextColor
+  background-color $primaryColorAlpha
+
+.mat-button.selected
+  color $primaryColor
+  background-color $primaryColorAlpha
+  border-radius 0
+
+.mat-button.mat-default-theme.mat-accent[disabled], .mat-button.mat-accent[disabled], .mat-button.mat-default-theme.mat-fab[disabled], .mat-button.mat-fab[disabled], .mat-button.mat-default-theme.mat-raised[disabled], .mat-button.mat-raised[disabled], .mat-button.mat-default-theme.mat-warn[disabled], .mat-button.mat-warn[disabled], .mat-button.mat-default-theme[disabled], .mat-button[disabled]
+  border-radius $btnBorderRadius
+  border 1px solid $primaryColorAlphaXtra
+  color $primaryColorAlphaSemi!important
+  background-color inherit!important
+
+.mat-button[disabled].ACCEPTED
+  border-radius $btnBorderRadius
+  border 1px solid $approveColor
+  color $approveColor
+  background-color inherit!important
+
+.mat-button[disabled].DECLINED
+  border-radius $btnBorderRadius
+  border 1px solid $declinedColor
+  color $declinedColor
+  background-color inherit!important
+
+.mat-button[disabled].PENDING
+  border-radius $btnBorderRadius
+  border 1px solid $primaryColorAlpha
+  color $primaryColorAlpha
+  background-color inherit!important
+
+.mat-button
+  line-height 30px!important
+
+.bcxSecondaryButton
+  background $lightBgColor
+
+.pqButton--Warn
+  color $errorColor
+  margin-top 8px
+  cursor pointer
+  padding 8px
+  &:hover
+    background-color $neutralColor
+    color $declinedColor

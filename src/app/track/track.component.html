@@ -1,0 +1,69 @@
+<div fxFlex fxLayoutAlign="start center" fxLayout="column" fxFlexFill>
+  <div class="title">
+    <h1>Start Tracking a parcel</h1>
+    <h3>Enter the parcel ID to find out information about it</h3>
+  </div>
+  <div class="form">
+    <form
+      fxFlex
+      fxLayout="column"
+      fxLayoutAlign="space-around"
+      class="double-lowered"
+      id="createParcelInformation"
+      name="createParcelInformation"
+      #createParcelInformation="ngForm"
+      (ngSubmit)="findParcel()">
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center">
+        <div
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          style="padding-top: 30px">
+          <div class="pqForm__container pqSmallMargin--right"
+               fxLayout="column"
+               fxLayoutAlign="start start">
+            <label class="pqForm__input--label">Parcel Name</label>
+            <md-input-container class="parcelInformation__input--large">
+              <input mdInput
+                     required
+                     minlength="5"
+                     maxlength="127"
+                     id="parcelHashInput"
+                     name="parcelHashInput"
+                     #parcelHashInput="ngModel"
+                     title="Device Name"
+                     [(ngModel)]="parcelHash"/>
+            </md-input-container>
+            <div class="pqFormValidation-container input__error"
+                 *ngIf="parcelHashInput.invalid && (parcelHashInput.dirty || parcelHashInput.touched)">
+              <md-error *ngIf="parcelHashInput.hasError('required')" class="alert alert-danger">Parcel name required</md-error>
+              <md-error *ngIf="parcelHashInput.hasError('minlength')" class="alert alert-danger">At least 5 characters
+              </md-error>
+              <md-error *ngIf="parcelHashInput.hasError('maxlength')" class="alert alert-danger">At most 127 characters
+              </md-error>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayoutAlign="center center" fxLayoutGap="10px">
+        <button md-button md-raised-button
+                value="Create Parcel">Find Parcel</button>
+      </div>
+    </form>
+  </div>
+  <table fxFlex>
+    <tr>
+      <th>Timestamp</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Note</th>
+    </tr>
+    <tr *ngFor="let record of records">
+      <td>{{record.timestamp}}</td>
+      <td>{{record.lat}}</td>
+      <td>{{record.long}}</td>
+      <td>{{record.note}}</td>
+    </tr>
+  </table>
+</div>

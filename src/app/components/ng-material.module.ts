@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   MdAutocompleteModule,
@@ -37,6 +38,9 @@ import {
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    FormsModule,
     MdAutocompleteModule,
     MdButtonModule,
     MdButtonToggleModule,
@@ -67,8 +71,7 @@ import {
     MdTabsModule,
     MdToolbarModule,
     MdTooltipModule,
-    FlexLayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
     MdAutocompleteModule,
@@ -102,7 +105,8 @@ import {
     MdToolbarModule,
     MdTooltipModule,
     FlexLayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class NgMaterialModule { }

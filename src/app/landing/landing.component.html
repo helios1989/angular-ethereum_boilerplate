@@ -1,3 +1,14 @@
-<p>
-  landing works!
-</p>
+<h1>Landing Page</h1>
+
+<table>
+  <thead>
+  <th>Account</th>
+  <th>Balance</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let account of accounts">
+    <td style="font-family: monospace">{{account.address}}</td>
+    <td style="text-align: right">{{account.balance}}</td>
+  </tr>
+  </tbody>
+</table>

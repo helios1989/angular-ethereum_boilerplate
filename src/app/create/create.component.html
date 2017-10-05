@@ -1,0 +1,189 @@
+<div fxFlex fxLayoutAlign="start center" fxLayout="column" fxFlexFill fxLayoutWrap>
+  <div class="title">
+    <h1>Start Tracking a parcel</h1>
+    <h3>Fill out the tracking information to setup parcel tracking</h3>
+    <md-progress-bar
+      [color]="color"
+      [mode]="'buffer'"
+      [value]="strength"
+      [bufferValue]="bufferValue"
+      mdTooltip="This bar indicates how valid your record is">
+    </md-progress-bar>
+  </div>
+  <div class="form" *ngIf="state === 'create'">
+    <form
+      fxLayoutWrap
+      fxFlex
+      fxLayout="column"
+      fxLayoutAlign="space-around"
+      class="double-lowered"
+      id="createParcelInformation"
+      name="createParcelInformation"
+      #createParcelInformation="ngForm"
+      (ngSubmit)="createParcel(parcelDTO)">
+      <div
+        fxLayoutWrap
+        fxLayout="row"
+        fxLayoutAlign="center center">
+        <div
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          style="padding-top: 30px">
+          <div class="pqForm__container pqSmallMargin--right"
+               fxLayout="column"
+               fxLayoutAlign="start start">
+            <label class="pqForm__input--label">Parcel Name</label>
+            <md-input-container class="deviceInformation__input--large">
+              <input mdInput
+                     required
+                     minlength="5"
+                     maxlength="127"
+                     id="parcelName"
+                     name="parcelName"
+                     #parcelName="ngModel"
+                     title="Device Name"
+                     [(ngModel)]="parcelDTO.parcelName"/>
+            </md-input-container>
+            <div class="pqFormValidation-container input__error"
+                 *ngIf="parcelName.invalid && (parcelName.dirty || parcelName.touched)">
+              <md-error *ngIf="parcelName.hasError('required')" class="alert alert-danger">Parcel name required</md-error>
+              <md-error *ngIf="parcelName.hasError('minlength')" class="alert alert-danger">At least 5 characters
+              </md-error>
+              <md-error *ngIf="parcelName.hasError('maxlength')" class="alert alert-danger">At most 127 characters
+              </md-error>
+            </div>
+          </div>
+          <div class="pqForm__container pqSmallMargin--right"
+               fxLayout="column"
+               fxLayoutAlign="start start">
+            <label class="pqForm__input--label">Additional Info</label>
+            <md-input-container class="deviceInformation__input--large">
+              <input mdInput
+                     required
+                     minlength="5"
+                     maxlength="127"
+                     id="parcelNote"
+                     name="parcelNote"
+                     title="Device Name"
+                     #parcelNote="ngModel"
+                     [(ngModel)]="parcelDTO.note"/>
+            </md-input-container>
+            <div class="pqFormValidation-container input__error"
+                 *ngIf="parcelNote.invalid && (parcelNote.dirty || parcelNote.touched)">
+              <md-error *ngIf="parcelNote.hasError('required')" class="alert alert-danger">Parcel note required</md-error>
+              <md-error *ngIf="parcelNote.hasError('minlength')" class="alert alert-danger">At least 5 characters
+              </md-error>
+              <md-error *ngIf="parcelNote.hasError('maxlength')" class="alert alert-danger">At most 127 characters
+              </md-error>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="locationLoaded" fxLayoutAlign="center center" fxLayout="row" style="padding: 16px" fxLayoutWrap>
+          <div
+            fxLayout="column"
+            fxLayoutAlign="center center">
+            <md-slide-toggle
+              name="customLocation"
+              [(ngModel)]="customLocation"
+              (click)="toggleLocation()"
+              style="padding-bottom: 6px"
+              mdTooltip="Having a custom location reduces record validity">Custom Location</md-slide-toggle>
+            <div class="pqForm__container pqSmallMargin--right"
+                 fxLayout="column"
+                 fxLayoutAlign="start start">
+              <label class="pqForm__input--label">Latitude</label>
+              <md-input-container class="deviceInformation__input--large">
+                <input mdInput
+                       [disabled]="!customLocation"
+                       required
+                       type="number"
+                       minlength="5"
+                       maxlength="127"
+                       id="parcelLatitude"
+                       name="parcelLatitude"
+                       title="Device Name"
+                       #parcelLatitude="ngModel"
+                       [(ngModel)]="parcelDTO.lat"/>
+              </md-input-container>
+              <div class="pqFormValidation-container input__error"
+                   *ngIf="parcelLatitude.invalid && (parcelLatitude.dirty || parcelLatitude.touched)">
+                <md-error *ngIf="parcelLatitude.hasError('required')" class="alert alert-danger">Parcel name required</md-error>
+                <md-error *ngIf="parcelLatitude.hasError('minlength')" class="alert alert-danger">At least 5 characters
+                </md-error>
+                <md-error *ngIf="parcelLatitude.hasError('maxlength')" class="alert alert-danger">At most 127 characters
+                </md-error>
+              </div>
+            </div >
+            <div class="pqForm__container pqSmallMargin--right"
+                 fxLayout="column"
+                 fxLayoutAlign="start start">
+              <label class="pqForm__input--label">Latitude</label>
+              <md-input-container class="deviceInformation__input--large">
+                <input mdInput
+                       [disabled]="!customLocation"
+                       required
+                       type="number"
+                       minlength="5"
+                       maxlength="127"
+                       id="parcelLongitude"
+                       name="parcelLongitude"
+                       title="Device Name"
+                       #parcelLongitude="ngModel"
+                       [(ngModel)]="parcelDTO.long"/>
+              </md-input-container>
+              <div class="pqFormValidation-container input__error"
+                   *ngIf="parcelLongitude.invalid && (parcelLongitude.dirty || parcelLongitude.touched)">
+                <md-error *ngIf="parcelLongitude.hasError('required')" class="alert alert-danger">Parcel name required</md-error>
+                <md-error *ngIf="parcelLongitude.hasError('minlength')" class="alert alert-danger">At least 5 characters
+                </md-error>
+                <md-error *ngIf="parcelLongitude.hasError('maxlength')" class="alert alert-danger">At most 127 characters
+                </md-error>
+              </div>
+            </div>
+          </div>
+          <div
+            fxLayout="column"
+            fxLayoutAlign="center center">
+            <agm-map [latitude]="parcelDTO.lat" [longitude]="parcelDTO.long" [zoom]="zoom">
+              <agm-marker
+                [latitude]="parcelDTO.lat"
+                [longitude]="parcelDTO.long">
+                <agm-info-window>
+                  {{parcelDTO.note}}
+                </agm-info-window>
+              </agm-marker>
+            </agm-map>
+          </div>
+        </div>
+        <div *ngIf="!locationLoaded" fxLayoutAlign="start center" fxLayout="column">
+          <md-progress-spinner
+            mode="indeterminate">
+          </md-progress-spinner>
+          <h3 class="low-margin">Getting your Location</h3>
+          <h4 class="low-margin">For added validity, allow location services</h4>
+        </div>
+      </div>
+      <div fxLayoutAlign="center center" fxLayoutGap="10px">
+        <button md-button md-raised-button
+                value="Cancel"
+                type="button"
+                (click)="goHome()">Cancel</button>
+        <button md-button md-raised-button
+                [disabled]="!createParcelInformation.form.valid"
+                value="Create Parcel">Create Parcel</button>
+      </div>
+    </form>
+  </div>
+  <div fxLayoutWrap *ngIf="state === 'wait'" fxLayoutAlign="center center" fxLayout="column">
+    <md-spinner></md-spinner>
+    <p>{{statement}}</p>
+    <qrcode *ngIf="!!newParcelHash"
+      [qrdata]="newParcelHash"
+      [size]="450"
+      [level]="'H'"
+    ></qrcode>
+    <div *ngIf="!!newParcelHash">
+      {{newParcelHash}}
+    </div>
+  </div>
+</div>

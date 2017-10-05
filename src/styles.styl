@@ -1,0 +1,80 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import "global";
+@import "./styles/_overrides"
+@import "./styles/_buttons"
+@import "./styles/_inputs"
+
+html, body, app-root
+  font-family $fontFamily
+  height 100%
+  width 100%
+  margin 0
+a, a:-webkit-any-link
+  text-decoration none
+  color inherit
+
+input,
+button,
+select,
+textarea
+  font-family inherit
+  font-size inherit
+  line-height inherit
+
+select, input
+  -webkit-appearance none
+  -moz-appearance none
+  appearance none
+  color $primaryColor!important
+
+h1
+  font-size 46px
+  color $secondaryColor
+  max-width 600px
+  text-align center
+
+h4
+  font-size $fontSizeMD
+  color $text2Color
+
+.mainContent
+  background $mainBGColor
+
+.pqContent
+  min-height $contentMinHeight
+  height 100%
+
+.forceHide
+  display none!important
+
+main
+  @extend .pqContent
+  width 100%
+
+.cutLongText
+  text-overflow ellipsis
+  overflow hidden
+
+.content-wrapper
+  @extend .pqContent
+  position relative
+
+.pqForm__container
+  min-height 80px
+  padding-bottom 16px
+
+.pqForm__container--full__width
+  min-width 100%
+  width 100%
+
+.pqSmallMargin--right
+  margin-right 8px
+
+.pqCheck__cardContent
+  height 100%
+
+.pqCard__generic
+  width $cardWidthLarge
+  @media screen and (max-width: 600px)
+    width $cardWidthSmall

@@ -1,0 +1,74 @@
+@import '../global';
+
+$paddingInput-Left = 2px;
+
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value , md-input-container:not(.md-input-invalid).md-input-has-value
+  color $primaryColor
+
+.mat-input-placeholder-wrapper
+  color $text1Color
+
+.mat-input-underline, .mat-select-underline
+  border-color $primaryColorAlpha
+  display none
+
+.mat-input-wrapper, .mat-select-wrapper
+  border-radius 4px
+  padding-bottom inherit
+
+.mat-input-ripple, .mat-select-ripple
+  background-color $primaryColor
+
+.mat-focused .mat-input-placeholder, mat-datepicker-toggle
+  color $primaryColor
+
+.mat-input-placeholder, .mat-select-placeholder
+  padding-left $paddingInput-Left!important
+
+[aria-required=true] .mat-select-placeholder::after
+   content ''!important
+
+.mat-focused .mat-input-placeholder.mat-float, .mat-input-placeholder.mat-float:not(.mat-empty)
+  margin-top -2px
+
+.mat-input-infix, .mat-select
+  border 1px solid $primaryColorAlpha
+  border-radius 4px
+
+.mat-input-element, .mat-select-value
+  padding-left $paddingInput-Left!important
+
+md-error
+  font-size 12px
+  line-height 14px
+  overflow hidden
+  -webkit-transition all .3s cubic-bezier(.55,0,.55,.2);
+  transition all .3s cubic-bezier(.55,0,.55,.2)
+  padding-left $paddingInput-Left
+
+.input__error md-error
+  margin-top 2px
+
+.mat-option.mat-selected.mat-primary, .mat-primary .mat-option.mat-selected
+  color $primaryColor
+
+.mat-select-arrow, .mat-select-disabled .mat-select-value
+  color $primaryColor
+
+.mat-select:focus:not(.mat-select-disabled).mat-primary .mat-select-arrow, .mat-select:focus:not(.mat-select-disabled).mat-primary .mat-select-trigger
+  color $primaryColor
+
+.mat-select-trigger
+  height 34px!important
+
+.mat-select
+  padding-top 0
+
+.mat-select:focus:not(.mat-select-disabled).mat-primary .mat-select-underline
+  background-color $primaryColor
+
+.pqForm__input--label
+  display block
+  padding-bottom 8px
+  color $secondaryColor
+  font-size $fontSizeMD

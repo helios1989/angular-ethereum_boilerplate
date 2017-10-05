@@ -1,36 +1,47 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { NgMaterialModule } from './components/ng-material.module';
-import { LandingComponent } from './landing/landing.component';
-
-import { routes } from './app.routes';
-import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentsModule } from './components/components.module';
+import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
+
+import { QRCodeModule } from 'angularx-qrcode';
+
+import { NgMaterialModule } from './components/ng-material.module';
+import { CommonComponentModule } from './common/common.module';
+
+import { LandingComponent } from './landing/landing.component';
+import { CreateComponent } from './create/create.component';
+import { TrackComponent } from './track/track.component';
+import { AppComponent } from './app.component';
+
+import { routes } from './app.routes';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CreateComponent,
     LandingComponent,
+    TrackComponent,
   ],
   imports: [
-    RouterModule.forRoot(routes, {
-      useHash: true
-    }),
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    HttpModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDNNG9-hBHrbY1nkklO_87tBvgSs7XygF8'}),
     BrowserAnimationsModule,
+    BrowserModule,
+    CommonComponentModule,
     CommonModule,
-    // TODO: Add components module
-    // ComponentsModule,
-    NgMaterialModule
+    ComponentsModule,
+    FormsModule,
+    HttpClientModule,
+    HttpModule,
+    NgMaterialModule,
+    QRCodeModule,
+    RouterModule.forRoot(routes, {useHash: true}),
   ],
   providers: [],
   bootstrap: [AppComponent]
